@@ -7,7 +7,7 @@ import pandas as pd
 
 def schedule_2_json():
     df = pd.read_csv("input.csv", encoding="utf-8")
-    df = df.loc[df["aprovada"].isin(["ok"])]
+    df = df.loc[df["Aprovada"].isin(["ok"])]
     selected_headers = [
         "Data e Hora",
         "Título da Palestra:",
