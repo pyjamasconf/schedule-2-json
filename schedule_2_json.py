@@ -9,7 +9,7 @@ def schedule_2_json():
     df = pd.read_csv("input.csv", encoding="utf-8")
     df = df.loc[df["aprovada"].isin(["ok"])]
     selected_headers = [
-        "Carimbo de data/hora",
+        "Data e Hora",
         "Título da Palestra:",
         "Duração (minutos)",
         "Link",
@@ -23,8 +23,11 @@ def schedule_2_json():
 
 
 def convert_date(date_str):
-    date = datetime.strptime(date_str, "%d/%m/%Y %H:%M:%S")
-    return str(date)
+    try:
+        date = datetime.strptime(date_str, "%d/%m/%Y %H:%M")
+        return date.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-4]
+    except Exception:
+        return date_str
 
 
 def convert_to_embed(url):
